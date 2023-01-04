@@ -1,7 +1,7 @@
 psychedelic_efficacy
 ==============================
 
-pHow might we predict and improve the efficacy of psychiatric treatment with a prescription psych med or psychedelic option, given demographic information about a patient and/or narrative description of their experiences before and after trying a drug?
+How might we predict and improve the efficacy of psychiatric treatment with a prescription psych med or psychedelic option, given demographic information about a patient and/or narrative description of their experiences before and after trying a drug?
 
 Project Organization
 ------------
