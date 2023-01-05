@@ -90,7 +90,7 @@ def strip_non_emoji_emoji_symbol(df, column):
         + colon_before_word + semicolon_after_indices + semicolon_before_word
         
         # Replace target characters in the string to strip with just a space ' '
-            Use a space ' ' instead of nothing '' in case of something like:this 
+            # Use a space ' ' instead of nothing '' in case of something like:this 
         temp = list(string_to_strip)
         for index in indices_to_remove:
             temp[index] = ' '

@@ -4,7 +4,7 @@ import pytest
 import pandas as pd
 
 from src.nlp.parse import remove_accented_chars, strip_most_punc, \
-     strip_apostrophe
+     strip_apostrophe, strip_non_emoji_emoji_symbol
 
 
 test_df = pd.DataFrame({'t_rating':[1,2,3,4,5], \
