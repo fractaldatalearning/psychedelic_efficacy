@@ -60,7 +60,7 @@ def strip_non_emoji_emoji_symbol(df, column):
 
     Args: 
       df: name of dataframe
-      column: name of a column from the dataframe 
+      column: name of a column from the dataframe
 
     Returns: same string in the same position within the df, with ;:() removed in the fashion described above.
 
