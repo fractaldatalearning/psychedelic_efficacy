@@ -67,6 +67,7 @@ def strip_non_emoji_emoji_symbol(df, column):
     """
 
     # Isolate 1 narrative at a time 
+    import re
     for row in tqdm(range(len(df))):
         string_to_strip = df.loc[row,column]
         
