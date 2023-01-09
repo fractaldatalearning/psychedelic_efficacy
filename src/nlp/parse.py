@@ -91,13 +91,29 @@ def strip_non_emoji_emoji_symbol(df, column):
         + colon_before_word + semicolon_after_indices + semicolon_before_word
         
         # Replace target characters in the string to strip with just a space ' '
-            # Use a space ' ' instead of nothing '' in case of something like:this 
+        # Use a space ' ' instead of nothing '' in case of something like:this 
         temp = list(string_to_strip)
         for index in indices_to_remove:
             temp[index] = ' '
             result = ''.join(temp)
             new_string = str(result)
-        # This returns nothing if there were no symbols to replace so provide alternative 
-        try: df.loc[row,column] = new_string
-        except: df.loc[row,column] = string_to_strip
-
+        # If there were no changes to be made, new_string stays the same as it was for the row before
+        # Or even several rows back. Make sure reviews don't get over-written with previous rows' reviews
+        if row>0 and new_string == df.loc[row-1,column]:
+            df.loc[row,column] = df.loc[row,column]
+        elif row>1 and new_string == df.loc[row-2,column]:
+            df.loc[row,column] = df.loc[row,column]
+        elif row>2 and new_string == df.loc[row-3,column]:
+            df.loc[row,column] = df.loc[row,column]
+        elif row>3 and new_string == df.loc[row-4,column]:
+            df.loc[row,column] = df.loc[row,column]
+        elif row>4 and new_string == df.loc[row-5,column]:
+            df.loc[row,column] = df.loc[row,column]
+        elif row>5 and new_string == df.loc[row-6,column]:
+            df.loc[row,column] = df.loc[row,column]
+        elif row>6 and new_string == df.loc[row-7,column]:
+            df.loc[row,column] = df.loc[row,column]
+        elif row>7 and new_string == df.loc[row-8,column]:
+            df.loc[row,column] = df.loc[row,column]
+        # As long as it's not getting overwritten incorectly, replace review with new, stripped string
+        else: df.loc[row,column] = new_string
