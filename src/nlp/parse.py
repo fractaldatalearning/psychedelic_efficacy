@@ -53,6 +53,8 @@ def strip_apostrophe(df, column):
 
 
 
+# This function isn't passing its test, and it's wonky toward the bottom. It does get the job jone, but try to
+# Improve the if statement to be more streamlined, universally applicable. 
 def strip_non_emoji_emoji_symbol(df, column):
 
     """Deletes the symbols :;() where they appear next to letters.
