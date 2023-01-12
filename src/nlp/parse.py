@@ -25,9 +25,9 @@ def strip_most_punc(df, column):
 
     Args: 
       df: name of dataframe
-      column: name of a column from the dataframe 
+      column: name of a column from the dataframe where strings are that should be stripped
 
-    Returns: same string in the same position within the df, with listed characters removed
+    Returns: same string in the same position within the df, with listed characters removed and replaced with a space
 
     """
     punc = str.maketrans('', '', '-[]{}",<>./@^&*_~')
@@ -42,7 +42,7 @@ def strip_apostrophe(df, column):
 
     Args: 
       df: name of dataframe
-      column: name of a column from the dataframe 
+      column: name of a column from the dataframe where strings are that should be stripped
 
     Returns: same string in the same position within the df, with apostrophes removed
 
@@ -62,7 +62,7 @@ def strip_non_emoji_emoji_symbol(df, column):
 
     Args: 
       df: name of dataframe
-      column: name of a column from the dataframe
+      column: name of a column from the dataframe where strings are that should be stripped
 
     Returns: same string in the same position within the df, with ;:() removed in the fashion described above.
 
