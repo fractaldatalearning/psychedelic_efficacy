@@ -53,69 +53,85 @@ def strip_apostrophe(df, column):
 
 
 
-# This function isn't passing its test, and it's wonky toward the bottom. It does get the job jone, but try to
-# Improve the if statement to be more streamlined, universally applicable. 
+# Pick up here with testing
+
 def strip_non_emoji_emoji_symbol(df, column):
 
     """Deletes the symbols :;() where they appear next to letters.
-        Replaces these symbols with a space ' '. Leaves them anytime they don't appear adjacent to letters.
+        Replaces these symbols with a space: ' '. Leaves them anytime they don't appear adjacent to letters.
 
     Args: 
-      df: name of dataframe
-      column: name of a column from the dataframe where strings are that should be stripped
+        df = dataframe with the strings to be stripped
+        column: name of a column from the dataframe where strings are that should be stripped
+      
 
     Returns: same string in the same position within the df, with ;:() removed in the fashion described above.
 
     """
 
-    # Isolate 1 narrative at a time 
     import re
+    chars_to_remove = ['(', ')', ':', ';']
+    
+    # Isolate 1 narrative at a time 
     for row in tqdm(range(len(df))):
         string_to_strip = df.loc[row,column]
-        
-        # Find each ) that appears next to letters, not other symbols.
-        closing_parentheses = [m.end() for m in re.finditer('[a-zA-z]\)', string_to_strip)]
-        # That's not capturing the correct character. Fix this.
-        clos_parenth_indices = [n - 1 for n in closing_parentheses]
-        # Find each ( 
-        opening_parentheses = [m.start() for m in re.finditer('\([a-zA-z]', string_to_strip)]
-        # Find each : 
-        colon_after_word = [m.end() for m in re.finditer('[a-zA-z]\:', string_to_strip)]
-        colon_after_indices = [n - 1 for n in colon_after_word]
-        colon_before_word = [m.start() for m in re.finditer('\:[a-zA-z]', string_to_strip)]
-        # find each ; 
-        semicolon_after_word = [m.end() for m in re.finditer('[a-zA-z]\;', string_to_strip)]
-        semicolon_after_indices = [n - 1 for n in semicolon_after_word]
-        semicolon_before_word = [m.start() for m in re.finditer('\;[a-zA-z]', string_to_strip)]
+        # Match the ( where it appears before or after a number. 
+        parenth_open_matches = re.findall('\([A-Za-z]', string_to_strip) + re.findall(
+            '[A-Za-z]\(', string_to_strip)
+        # Match remaining symbols
+        parenth_close_matches = re.findall('\)[A-Za-z]', string_to_strip) + re.findall(
+            '[A-Za-z]\)', string_to_strip)
+        colon_matches = re.findall(':[A-Za-z]', string_to_strip) + re.findall(
+            '[A-Za-z]:', string_to_strip)
+        semicolon_matches = re.findall(';[A-Za-z]', string_to_strip) + re.findall(
+            '[A-Za-z];', string_to_strip)
+        # combine all lists to capture all matched strings where any symbols should be replaced
+        all_matches = list(parenth_open_matches + parenth_close_matches + colon_matches + 
+                           semicolon_matches)
+        # Now replace just the symbols, not the numbers, in these matched strings
+        for match in all_matches: 
+            for char in chars_to_remove:
+                string_to_strip = string_to_strip.replace(match, match.replace(char, ''))
+        df.loc[row,column] = string_to_strip
 
-        # Combine lsits of indices in order to replace all characters 
-        indices_to_remove = clos_parenth_indices + opening_parentheses + colon_after_indices \
-        + colon_before_word + semicolon_after_indices + semicolon_before_word
-        
-        # Replace target characters in the string to strip with just a space ' '
-        # Use a space ' ' instead of nothing '' in case of something like:this 
-        temp = list(string_to_strip)
-        for index in indices_to_remove:
-            temp[index] = ' '
-            result = ''.join(temp)
-            new_string = str(result)
-        # If there were no changes to be made, new_string stays the same as it was for the row before
-        # Or even several rows back. Make sure reviews don't get over-written with previous rows' reviews
-        if row>0 and new_string == df.loc[row-1,column]:
-            df.loc[row,column] = df.loc[row,column]
-        elif row>1 and new_string == df.loc[row-2,column]:
-            df.loc[row,column] = df.loc[row,column]
-        elif row>2 and new_string == df.loc[row-3,column]:
-            df.loc[row,column] = df.loc[row,column]
-        elif row>3 and new_string == df.loc[row-4,column]:
-            df.loc[row,column] = df.loc[row,column]
-        elif row>4 and new_string == df.loc[row-5,column]:
-            df.loc[row,column] = df.loc[row,column]
-        elif row>5 and new_string == df.loc[row-6,column]:
-            df.loc[row,column] = df.loc[row,column]
-        elif row>6 and new_string == df.loc[row-7,column]:
-            df.loc[row,column] = df.loc[row,column]
-        elif row>7 and new_string == df.loc[row-8,column]:
-            df.loc[row,column] = df.loc[row,column]
-        # As long as it's not getting overwritten incorectly, replace review with new, stripped string
-        else: df.loc[row,column] = new_string
+
+
+def strip_emoji_sym_adjacent_number(df, column):
+
+    """Deletes the symbols :;() where they appear next to numbers.
+        Replaces these symbols with nothing: ''. Leaves them anytime they don't appear adjacent to numbers.
+
+    Args: 
+        df = dataframe with the strings to be stripped
+        column: name of a column from the dataframe where strings are that should be stripped
+      
+
+    Returns: same string in the same position within the df, with ;:() removed in the fashion described above.
+
+    """
+
+    import re
+    chars_to_remove = ['(', ')', ':', ';']
+    
+    # Isolate 1 narrative at a time 
+    for row in tqdm(range(len(df))):
+        string_to_strip = df.loc[row,column]
+        # Match the ( where it appears before or after a number. 
+        parenth_open_matches = re.findall('\([0-9]', string_to_strip) + re.findall(
+            '[0-9]\(', string_to_strip)
+        # Match remaining symbols
+        parenth_close_matches = re.findall('\)[0-9]', string_to_strip) + re.findall(
+            '[0-9]\)', string_to_strip)
+        colon_matches = re.findall(':[0-9]', string_to_strip) + re.findall(
+            '[0-9]:', string_to_strip)
+        semicolon_matches = re.findall(';[0-9]', string_to_strip) + re.findall(
+            '[0-9];', string_to_strip)
+        # combine all lists to capture all matched strings where any symbols should be replaced
+        all_matches = list(parenth_open_matches + parenth_close_matches + colon_matches + 
+                           semicolon_matches)
+        # Now replace just the symbols, not the numbers, in these matched strings
+        for match in all_matches: 
+            for char in chars_to_remove:
+                string_to_strip = string_to_strip.replace(match, match.replace(char, ''))
+        df.loc[row,column] = string_to_strip
+
