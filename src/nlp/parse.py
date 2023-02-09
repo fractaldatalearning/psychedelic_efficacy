@@ -96,6 +96,29 @@ def strip_non_emoji_emoji_symbol(df, column):
 
 
 
+
+def strip_emoji_like_if_spaces(df, column):
+
+    """Deletes the symbols :;() where they appear surrounted entirely by spaces i.e. ' ( '.
+        Replaces these symbols with nothing: ''. Leaves them anytime they don't appear adjacent to numbers.
+
+    Args: 
+        df = dataframe with the strings to be stripped
+        column: name of a column from the dataframe where strings are that should be stripped
+      
+
+    Returns: same string in the same position within the df, with ;:() removed in the fashion described above.
+
+    """
+
+    remove_if_spaces = [' ( ', ' ) ', ' : ', ' ; ']
+    for char in remove_if_spaces:
+    # Replace each character surrounded by spaces with just a single space
+        df[column] = df[column].str.replace(char, '', regex=False)
+
+
+
+
 def strip_emoji_sym_adjacent_number(df, column):
 
     """Deletes the symbols :;() where they appear next to numbers.
@@ -134,4 +157,7 @@ def strip_emoji_sym_adjacent_number(df, column):
             for char in chars_to_remove:
                 string_to_strip = string_to_strip.replace(match, match.replace(char, ''))
         df.loc[row,column] = string_to_strip
+
+
+
 
