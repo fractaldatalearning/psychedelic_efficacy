@@ -1,3 +1,4 @@
+from textblob import TextBlob
 
 def get_subjectivity(text):
     return TextBlob(text).sentiment.subjectivity
