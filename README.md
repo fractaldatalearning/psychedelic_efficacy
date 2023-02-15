@@ -23,6 +23,7 @@ In [notebook 10](https://github.com/fractaldatalearning/psychedelic_efficacy/blo
 
 [Figure deomonstrating the relative distributions of sentiment polarity among psychedelic reports and prescription med reviews.](https://github.com/fractaldatalearning/psychedelic_efficacy/blob/main/reports/figures/compare_polarity.png)
 
+
 --------
 [Please see the project proposal for citations/links to original data sources](https://github.com/fractaldatalearning/psychedelic_efficacy/blob/main/references/kl_cap3_proposal_psychedelic_efficacy.pdf)
 
