@@ -17,9 +17,8 @@ In [notebook 7](https://github.com/fractaldatalearning/psychedelic_efficacy/blob
 
 ![Confusion matrix of true and predicted ratings.](https://github.com/fractaldatalearning/psychedelic_efficacy/blob/main/reports/figures/confusion_matrix.png)
 
-In [notebook 8](https://github.com/fractaldatalearning/psychedelic_efficacy/blob/main/notebooks/8-kl-scraping.ipynb), I scrape psychedelic experience reports from erowid.org. In [notebook 9](https://github.com/fractaldatalearning/psychedelic_efficacy/blob/main/notebooks/9-kl-reports-clean-engineer.ipynb), I clean these reports and engineer features to mimic those of the prescription psych med reviews from the trained model. 
+In [notebook 8](https://github.com/fractaldatalearning/psychedelic_efficacy/blob/main/notebooks/8-kl-scraping.ipynb), I scrape psychedelic experience reports from erowid.org. In [notebook 9](https://github.com/fractaldatalearning/psychedelic_efficacy/blob/main/notebooks/9-kl-reports-clean-engineer.ipynb), I clean these reports and engineer features to mimic those of the prescription psych med reviews from the trained model. In [notebook 10](https://github.com/fractaldatalearning/psychedelic_efficacy/blob/main/notebooks/10-kl-reports-engineer-ratings.ipynb), I apply the model to the new scraped data and use predicted ratings to compare psychedelic and prescription drugs. 
 
-In [notebook 10](https://github.com/fractaldatalearning/psychedelic_efficacy/blob/main/notebooks/10-kl-reports-engineer-ratings.ipynb), I apply the model to the new scraped data and use predicted ratings to compare psychedelic and prescription drugs. 
 ### The average rating of psychedelics turns out to be 4.49, compared with 3.93 for presription meds. 
 This is likely due to the fact that more psychedeli experience reports' sentiment is positive. 
 
