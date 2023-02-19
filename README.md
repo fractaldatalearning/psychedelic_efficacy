@@ -28,4 +28,4 @@ This is likely due to the fact that more psychedelic experience reports' sentime
 --------
 [Please see the project proposal for citations/links to original data sources](https://github.com/fractaldatalearning/psychedelic_efficacy/blob/main/references/kl_cap3_proposal_psychedelic_efficacy.pdf)
 
-<p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
+<p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>.</small></p>
