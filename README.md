@@ -3,7 +3,7 @@
 
 ![pink and purple chemical lab environment](https://github.com/fractaldatalearning/psychedelic_efficacy/blob/main/reports/figures/cover_img.png)
 
-[Please see a summary of findings and explanation of methodoligical judgements in the final report.](https://github.com/fractaldatalearning/psychedelic_efficacy/blob/main/reports/Katin_Capstone3_Report.pdf) For a breakdown of how to explore the underlying work throughout this project, read on:
+[Please see a summary of findings and explanation of methodoligical judgements in the final report.](https://github.com/fractaldatalearning/psychedelic_efficacy/blob/main/reports/kl_psychedelic_report.pdf) For a breakdown of how to explore the underlying work throughout this project, read on:
 
 Functions used throughout the notebooks are saved in the [source folder](https://github.com/fractaldatalearning/psychedelic_efficacy/tree/main/src) and [tested here](https://github.com/fractaldatalearning/psychedelic_efficacy/tree/main/tests/test_nlp). 
 
